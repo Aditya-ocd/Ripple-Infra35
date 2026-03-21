@@ -1,0 +1,45 @@
+name: Terraform Init and Plan
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: choice
+        description: "Branch name to checkout"
+        required: true
+        default: "main"
+        options:
+          - main
+          - feature
+      environment:
+        type: choice
+        description: "Environment name"
+        required: true
+        default: "dev"
+        options:
+          - dev
+          - prd
+          - pre
+      application:
+        description: "Application name"
+        required: false
+        default: "1"
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Set working directory
+        run: echo "TF_WORKDIR=terraform/environments/${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{ env.TF_WORKDIR }}
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ${{ env.TF_WORKDIR }}
