@@ -1,3 +1,4 @@
+## keyvault_config block moved below, duplicate removed
 location = "eastus"
 resource_group_names = {
   container_env       = "rg-cae-aios-pre-eastus"
@@ -22,6 +23,7 @@ keyvault_config = {
   kv_name = "kv-aios-pre-eastus"
 }
 
+
 openai_config = {
   name = "openai-aios-pre-eastus"
 }
@@ -43,5 +45,22 @@ database_config = {
 }
 
 storage_config = {
-  storage_account_name = "staiospeastus"
+  storage_account_name = "staiospreastus"
+}
+
+vnet_config = {
+  name = "vnet-app-aios-pre-eastus"
+  resource_group_name = "rg-cae-aios-pre-eastus"
+}
+
+subnet_configs = {
+  login = {
+    address_prefixes = ["10.0.1.0/24"]
+  }
+  ui = {
+    address_prefixes = ["10.0.2.0/24"]
+  }
+  api = {
+    address_prefixes = ["10.0.3.0/24"]
+  }
 }

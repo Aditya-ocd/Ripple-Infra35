@@ -43,7 +43,7 @@ database_config = {
 }
 
 storage_config = {
-  storage_account_name = "staiosdveeastus"
+  storage_account_name = "staiosdeveastus"
 }
 
 vnet_config = {
