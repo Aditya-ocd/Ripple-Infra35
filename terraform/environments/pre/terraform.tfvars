@@ -50,7 +50,7 @@ storage_config = {
 
 vnet_config = {
   name = "vnet-app-aios-pre-eastus"
-  resource_group_name = "rg-cae-aios-pre-eastus"
+  resource_group_name = "rg-vnet-aios-pre-eastus"
 }
 
 subnet_configs = {
