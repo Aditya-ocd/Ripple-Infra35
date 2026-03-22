@@ -10,7 +10,7 @@ on:
         default: "main"
         options:
           - main
-          - feature
+          - feature1
       environment:
         type: choice
         description: "Environment name"
@@ -20,6 +20,10 @@ on:
           - dev
           - prd
           - pre
+
+ permissions:
+  id-token: write
+  contents: read         
 
 jobs:
   terraform:
