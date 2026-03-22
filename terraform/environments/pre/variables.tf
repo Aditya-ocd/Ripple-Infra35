@@ -68,7 +68,7 @@ variable "storage_config" {
 }
 
 variable "vnet_config" {
-  description = "Existing VNet configuration"
+  description = "vnet-app-aios-pre-eastus"
   type = object({
     name                = string
     resource_group_name = string

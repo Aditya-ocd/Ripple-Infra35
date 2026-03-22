@@ -20,10 +20,10 @@ on:
           - dev
           - prd
           - pre
-      application:
-        description: "Application name"
-        required: false
-        default: "1"
+      # application:
+      #   description: "Application name"
+      #   required: false
+      #   default: "1"
 
 jobs:
   terraform:
@@ -35,6 +35,13 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: false
       - name: Set working directory
         run: echo "TF_WORKDIR=terraform/environments/${{ github.event.inputs.environment }}" >> $GITHUB_ENV
       - name: Terraform Init
