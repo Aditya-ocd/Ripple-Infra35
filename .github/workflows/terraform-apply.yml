@@ -20,8 +20,8 @@ on:
           - dev
           - prd
           - pre
-    
-permissions:
+
+ permissions:
   id-token: write
   contents: read
 
